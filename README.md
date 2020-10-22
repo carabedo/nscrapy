@@ -1,7 +1,9 @@
 # nscrapy
 
 
-Libreria para bajar notas de clarin y pagina 12, solo se necesita la URL.
+Libreria para bajar notas de clarin , pagina12 y cronica.
+
+Solo se necesita la URL.
 
 Ejemplo:
 
