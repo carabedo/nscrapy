@@ -31,7 +31,7 @@ Ejemplo:
 
 ```python
 import nscrap as ns
-nota1=ns.clarin('url de la nota de clarin)
+nota1=ns.clarin('url de la nota de clarin')
 nota1.get()
 ```
 
