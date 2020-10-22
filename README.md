@@ -1,24 +1,18 @@
 <div align="center">
-  <h1> 30 Days Of JavaScript: Introduction</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/asabeneh/">
+  <h1> NSCRAPY: Scrapper de principales portales de noticias.</h1>
+  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/fernando-carabedo-76044134/">
   <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
   </a>
-  <a class="header-badge" target="_blank" href="https://twitter.com/Asabeneh">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/asabeneh?style=social">
+  <a class="header-badge" target="_blank" href="https://twitter.com/muydipalma">
+  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/muydipalma?style=social">
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/asabeneh/" target="_blank">Asabeneh Yetayeh</a><br>
-<small> January, 2020</small>
+<a href="https://www.linkedin.com/in/fernando-carabedo-76044134/" target="_blank">Fernando Carabedo</a><br>
+<small> Octubre, 2020</small>
 </sub>
 
-  <div>
 
-🇬🇧 [English](./readMe.md)
-🇪🇸 [Spanish](./Spanish/readme.md)
-🇷🇺 [Russian](./RU/README.md)
-
-  </div>
 
 </div>
 </div>
