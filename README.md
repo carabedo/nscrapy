@@ -1,6 +1,6 @@
 <div align="center">
   <h1> NSCRAPY: Scrapper de principales portales de noticias.</h1>
-  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/fernando-carabedo-76044134/">
+  <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/carabedo/">
   <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
   </a>
   <a class="header-badge" target="_blank" href="https://twitter.com/muydipalma">
@@ -8,7 +8,7 @@
   </a>
 
 <sub>Author:
-<a href="https://www.linkedin.com/in/fernando-carabedo-76044134/" target="_blank">Fernando Carabedo</a><br>
+<a href="https://www.linkedin.com/in/carabedo/" target="_blank">Fernando Carabedo</a><br>
 <small> Octubre, 2020</small>
 </sub>
 
