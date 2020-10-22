@@ -19,6 +19,7 @@ class clarin():
         nota=r.get(url)
         sopa=bs(nota.content,features="lxml")
         ps=sopa.find('div','body-nota').findAll('p')
+        st=sopa.find('div','body-nota').findAll('strong')
         self.volanta=sopa.find('p','volanta').text
         self.titulo=sopa.find('h1').text
         self.bajada=sopa.find('div','bajada').find('h2').text
@@ -27,7 +28,12 @@ class clarin():
             if p.text == "COMENTARIOS":
                 break
             texto.append(p.text)
+        bolds=list()    
+        for b in st:
+            bolds.append(b.text)            
         self.cuerpo=' '.join(texto)
+        self.bold=' '.join(bolds)
+        self.bolds=bolds
         keys=self.keys
         keys['pageURL'][0]=url
         keys['streamID'][0]=url[-14:-5]
@@ -51,12 +57,18 @@ class p12():
         nota=r.get(url)
         sopa=bs(nota.content,features="lxml")
         ps=sopa.find('div','article-inner padding-right').findAll('p')
+        st=sopa.find('div','article-inner padding-right').findAll('b')
         self.volanta=sopa.find('h2','article-prefix').text
         self.titulo=sopa.find('h1').text
         self.bajada=sopa.find('div','article-summary').text
         texto=list()
         for p in ps:
             texto.append(p.text)
+        bolds=list()    
+        for b in st:
+            bolds.append(b.text)            
+        self.bold=' '.join(bolds)
+        self.bolds=bolds    
         self.cuerpo=' '.join(texto)
         aid=url.split('/')[-1].split('-')[0]
         payload=self.payload
