@@ -15,8 +15,10 @@ Luego el objeto nota1 tiene los siguientes atributos:
 
 
 * nota.titulo : titulo de la nota
-* nota.com : comentarios
+* nota.comm : comentarios
+* nota.com : ' '.join(comentarios)
 * nota.volanta : volanta de la nota
 * nota.bajada : resumen o subtitulo
 * nota.cuerpo : cuerpo nota
-* nota.bold : texto en negrita
+* nota.bolds : textos en negrita
+* nota.bold : ' '.join(bolds)
