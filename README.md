@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> NSCRAPY: Scrapper de principales portales de noticias.</h1>
+  <h1> NSCRAPY: Scraper de principales portales de noticias.</h1>
   <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/carabedo/">
   <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
   </a>
