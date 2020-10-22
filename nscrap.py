@@ -1,10 +1,6 @@
 import requests as r
 from bs4 import BeautifulSoup as bs
-import pickle as pkl
-import pandas as pd
 import urllib
-import numpy as np
-import time
 import json
 
 
