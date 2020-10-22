@@ -18,9 +18,10 @@
 </div>
 
 <div>
+<p align="center">
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/carabedo)
-
+</p>
 </div>
 
 Libreria para bajar notas de clarin , pagina12 y cronica.
