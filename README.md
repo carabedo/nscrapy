@@ -38,12 +38,13 @@ nota1.get()
 Luego el objeto nota1 tiene los siguientes atributos:
 
 ```python
-* nota.titulo : titulo de la nota
-* nota.comm : comentarios
-* nota.com : ' '.join(comentarios)
-* nota.volanta : volanta de la nota
-* nota.bajada : resumen o subtitulo
-* nota.cuerpo : cuerpo nota
-* nota.bolds : textos en negrita
-* nota.bold : ' '.join(bolds)
+nota.titulo : titulo de la nota
+nota.comm : comentarios
+nota.com : ' '.join(comentarios)
+nota.volanta : volanta de la nota
+nota.bajada : resumen o subtitulo
+nota.cuerpo : cuerpo nota
+nota.bolds : textos en negrita
+nota.bold : ' '.join(bolds)
 ``` 
+
