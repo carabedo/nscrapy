@@ -46,6 +46,7 @@ class clarin():
         
         
 class p12():
+    
     def __init__(self,url):
         self.url=url
     #poner a mano el limite de comentarios, por default en la pagina=10
@@ -79,6 +80,8 @@ class p12():
         self.coms=pp.json()['data']['asset']['comments']['nodes']
         self.comm=[x['body'] for x in self.coms]
         self.com=' '.join(self.comm)
+        
+        
 class cronica():
     def __init__(self,url):
         self.url=url
@@ -94,6 +97,7 @@ class cronica():
         self.bold=' '.join(bolds)
         self.bolds=bolds    
         self.cuerpo=sopa.find('div', { 'class' :"entry-body text-font"}).text        
+        
         
 class cronista():
     def __init__(self,url):
