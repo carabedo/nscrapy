@@ -25,6 +25,15 @@
 
 Libreria para bajar notas de clarin , pagina12, cronica y cronista.
 
+```python
+clarin()
+p12()
+cronica()
+cronista()
+``` 
+
+
+
 Solo se necesita la URL.
 
 Ejemplo:
