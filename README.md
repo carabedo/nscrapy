@@ -23,7 +23,7 @@
 </p>
 </div>
 
-Libreria para bajar notas de clarin , pagina12 y cronica.
+Libreria para bajar notas de clarin , pagina12, cronica y cronista.
 
 Solo se necesita la URL.
 
@@ -37,7 +37,7 @@ nota1.get()
 
 Luego el objeto nota1 tiene los siguientes atributos:
 
-
+```python
 * nota.titulo : titulo de la nota
 * nota.comm : comentarios
 * nota.com : ' '.join(comentarios)
@@ -46,3 +46,4 @@ Luego el objeto nota1 tiene los siguientes atributos:
 * nota.cuerpo : cuerpo nota
 * nota.bolds : textos en negrita
 * nota.bold : ' '.join(bolds)
+``` 
