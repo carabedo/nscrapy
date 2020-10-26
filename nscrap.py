@@ -79,3 +79,34 @@ class p12():
         self.coms=pp.json()['data']['asset']['comments']['nodes']
         self.comm=[x['body'] for x in self.coms]
         self.com=' '.join(self.comm)
+class cronica():
+    def __init__(self,url):
+        self.url=url
+   
+    def get(self):
+        ucr=self.url
+        nota=r.get(ucr)
+        sopa=bs(nota.content,features="lxml")
+        self.volanta=None
+        self.titulo=sopa.find('h1').text
+        self.bajada=sopa.find('div',{'class' : 'title'}).text
+        bolds=[x.text for x in sopa.find('div', { 'class' :"entry-body text-font"}).findAll('strong')]           
+        self.bold=' '.join(bolds)
+        self.bolds=bolds    
+        self.cuerpo=sopa.find('div', { 'class' :"entry-body text-font"}).text        
+        
+class cronista():
+    def __init__(self,url):
+        self.url=url
+   
+    def get(self):
+        ucr=self.url
+        nota=r.get(ucr)
+        sopa=bs(nota.content,features="lxml")
+        self.volanta=None
+        self.titulo=sopa.find('h1').get_text(strip=True)
+        self.bajada=sopa.find('p',{'class':'bajada'}).get_text(strip=True)
+        bolds=[ unicodedata.normalize("NFKD",x.get_text(strip=True)) for x in sopa.find('div',{'class':"article-container"}).find_all('strong')]         
+        self.bold=' '.join(bolds)
+        self.bolds=bolds    
+        self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text().strip()) for x in sopa.find('div',{'class':"article-container"}).find_all('p') ])         
