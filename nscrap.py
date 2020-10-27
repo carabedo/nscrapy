@@ -100,12 +100,12 @@ class cronica():
         
         
 class cronista():
-    def __init__(self,url):
-        self.url=url
+    def __init__(self):
+        self.url='https://www.cronista.com/'
    
-    def get(self):
-        ucr=self.url
-        nota=r.get(ucr)
+    def get(self,url):
+        
+        nota=r.get(url)
         sopa=bs(nota.content,features="lxml")
         self.volanta=None
         self.titulo=sopa.find('h1').get_text(strip=True)
@@ -113,4 +113,22 @@ class cronista():
         bolds=[ unicodedata.normalize("NFKD",x.get_text(strip=True)) for x in sopa.find('div',{'class':"article-container"}).find_all('strong')]         
         self.bold=' '.join(bolds)
         self.bolds=bolds    
-        self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text().strip()) for x in sopa.find('div',{'class':"article-container"}).find_all('p') ])         
+        self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text().strip()) for x in sopa.find('div',{'class':"article-container"}).find_all('p') ]) 
+        
+    def hoy(self):
+        url=self.url
+        req=r.get(url)
+        sopa=bs(req.content,features="lxml")
+        titulos=sopa.find_all('h2',{'itemprop':"headline"})
+        #urls=[url[:-1]+x.find('a').get('href') for x in titulos]
+        urls=list()
+        for x in titulos:
+            if x.find('a').get('href')[:4] == 'http':
+                urls.append(x.find('a').get('href'))
+            else:
+                urls.append(url[:-1]+x.find('a').get('href'))
+            
+        self.urls=urls
+        
+        
+        

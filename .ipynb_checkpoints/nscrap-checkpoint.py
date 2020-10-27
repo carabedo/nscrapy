@@ -114,3 +114,18 @@ class cronista():
         self.bold=' '.join(bolds)
         self.bolds=bolds    
         self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text().strip()) for x in sopa.find('div',{'class':"article-container"}).find_all('p') ])         
+ 
+    def hoy(self):
+        url=self.url
+        req=r.get(url)
+        sopa=bs(req.content,features="lxml")
+        titulos=sopa.find_all('h2',{'itemprop':"headline"})
+        #urls=[url[:-1]+x.find('a').get('href') for x in titulos]
+        urls=list()
+        for x in titulos:
+            if x.find('a').get('href')[:4] == 'http':
+                urls.append(x.find('a').get('href'))
+            else:
+                urls.append(url[:-1]+x.find('a').get('href'))
+            
+        self.urls=urls
