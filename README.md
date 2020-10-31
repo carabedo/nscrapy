@@ -25,6 +25,14 @@
 
 Libreria para bajar notas de clarin , pagina12, cronica y cronista.
 
+Instalacion:
+
+```python
+pip install nscrapy
+``` 
+
+
+
 ```python
 clarin()
 p12()
