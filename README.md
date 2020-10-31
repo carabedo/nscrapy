@@ -32,19 +32,23 @@ cronica()
 cronista()
 ``` 
 
-
-
-Solo se necesita la URL.
-
-Ejemplo:
+Ejemplo de uso, scrapear notas de hoy con comentarios:
 
 ```python
-import nscrap as ns
-nota1=ns.clarin('url de la nota de clarin')
-nota1.get()
-```
+from nscrapy import nscrap as ns
+from nscrapy.clarin import get
 
-Luego el objeto nota1 tiene los siguientes atributos:
+notasclarin=ns.clarin()
+
+#scrapeo el portal
+notrasclarin.hoy()
+
+#las urls a las notas de hoy estan en .urls
+
+notashoy=get(notasclari.urls)
+
+```
+notashoy es una lista de objetos nota:
 
 ```python
 nota.titulo : titulo de la nota
