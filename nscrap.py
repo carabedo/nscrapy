@@ -2,7 +2,7 @@ import requests as r
 from bs4 import BeautifulSoup as bs
 import urllib
 import json
-
+import time
 
 class clarin():
     def __init__(self):
@@ -50,7 +50,7 @@ class clarin():
         boxs=list()
 
         for x in sopa.find_all('div', {'class':'on-demand'}):
-            boxs.append(hoy.url+x.get('data-src'))
+            boxs.append(self.url+x.get('data-src'))
 
         reqs=list()
         # son 69 pero hasta el 8 tienen cosas
@@ -60,7 +60,7 @@ class clarin():
             time.sleep(0.2)
 
         box0=json.loads(reqs[0].content.decode().strip('()'))['data']
-        sopa0=bs(box0)
+        sopa0=bs(box0,features="lxml")
 
         for x in sopa0.find_all('a'): 
             urls.append(x.get('href'))
@@ -68,12 +68,12 @@ class clarin():
 
         for n,x in enumerate(reqs[1:]):
             box=json.loads(x.content.decode().strip('()'))['data']
-            sopa=bs(box)
+            sopa=bs(box,features="lxml")
             for y in sopa.find_all('article'):      
                 urls.append(y.find('a').get('href'))                                        
 
         box7=json.loads(reqs[7].content.decode().strip('()'))['data']
-        sopa7=bs(box7)
+        sopa7=bs(box7,features="lxml")
         for x in sopa7.find('div',{'class':'mas-vistas'}).find_all('div')[1].find_all('div',{'onclick' : True}):
             urls.append(x.get('onclick')[13:-11])  
         urls2=list()    
