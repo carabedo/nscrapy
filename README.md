@@ -40,7 +40,7 @@ cronica()
 cronista()
 ``` 
 
-Ejemplo de uso, scrapear notas de hoy con comentarios:
+Ejemplo de uso, scrapear notas de hoy (para pagina 12 cambiar clarin por p12) con comentarios:
 
 ```python
 from nscrapy import nscrap as ns
@@ -49,11 +49,11 @@ from nscrapy.clarin import get
 notasclarin=ns.clarin()
 
 #scrapeo el portal
-notrasclarin.hoy()
+notasclarin.hoy()
 
 #las urls a las notas de hoy estan en .urls
 
-notashoy=get(notasclari.urls)
+notashoy=get(notasclarin.urls)
 
 ```
 notashoy es una lista de objetos nota:
