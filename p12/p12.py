@@ -42,7 +42,7 @@ class p12():
         
         pp=r.post("https://talk.pagina12.com.ar/api/v1/graph/ql", json=payload)
         self.coms=pp.json()['data']['asset']['comments']['nodes']
-        self.comm=[x['body'] for x in self.coms]
+        self.comm=[unicodedata.normalize("NFKD",x['body'].strip().replace('\n','')) for x in self.coms]
         self.com=' '.join(self.comm)
         
     def hoy(self):            
