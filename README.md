@@ -59,12 +59,19 @@ notashoy=get(notasclarin.urls)
 notashoy es una lista de objetos nota:
 
 `nota.titulo` : titulo de la nota
-nota.comm : comentarios
-nota.com : ' '.join(comentarios)
-nota.volanta : volanta de la nota
-nota.bajada : resumen o subtitulo
-nota.cuerpo : cuerpo nota
-nota.bolds : textos en negrita
-nota.bold : ' '.join(bolds)
+
+`nota.comm` : comentarios
+
+`nota.com` : ' '.join(comentarios)
+
+`nota.volanta` : volanta de la nota
+
+`nota.bajada` : resumen o subtitulo
+
+`nota.cuerpo` : cuerpo nota
+
+`nota.bolds` : textos en negrita
+
+`nota.bold` : ' '.join(bolds)
 
 
