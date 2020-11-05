@@ -68,7 +68,7 @@ def get_notas(urls):
         try:
             nota.get(x)
             notas2.append(nota)
-            time.sleep(0.1)
+            time.sleep(0.2)
         except:
             print('fail: ',x)
 
@@ -92,6 +92,3 @@ def get_notas(urls):
     df.to_csv( year + '_' + month+'.csv')
 
 
-
-urls=get_urls('2010','03')
-get_notas(urls)
