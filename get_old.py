@@ -56,7 +56,7 @@ class clarin():
 def get_urls(year,month):
     url='https://www.clarin.com/contents/sitemap_news_'+ year + '_' + month +'.xml'
     xml=r.get(url)
-    sopa=bs(xml.content)
+    sopa=bs(xml.content,features="lxml")
     urls=[x.get_text() for x in sopa.find_all('loc')]
     return(urls)
 
