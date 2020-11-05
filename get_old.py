@@ -88,5 +88,6 @@ def get_notas(year,month):
     df=pd.DataFrame(data,columns=['date','volanta','bajada','titulo','cuerpo','bold','com','url'])
     df['cat']=df.url.apply( lambda x: x.split('/')[3])
     df.to_csv( year + '_' + month+'.csv')
+    print('fails: ',len(fails))
 
 
