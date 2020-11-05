@@ -67,7 +67,7 @@ def get_notas(urls):
         nota=clarin()
         try:
             nota.get(x)
-            notas2.append(nota)
+            notas.append(nota)
             time.sleep(0.2)
         except:
             print('fail: ',x)
