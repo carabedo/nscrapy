@@ -53,24 +53,22 @@ class clarin():
 
 
 
-def get_urls(year,month):
+def get_notas(year,month):
     url='https://www.clarin.com/contents/sitemap_news_'+ year + '_' + month +'.xml'
     xml=r.get(url)
     sopa=bs(xml.content,features="lxml")
     urls=[x.get_text() for x in sopa.find_all('loc')]
-    return(urls)
-
-def get_notas(urls):
+    
     notas=[]
-
+    fails=[]
     for i,x in enumerate(tqdm(urls)):
         nota=clarin()
         try:
             nota.get(x)
             notas.append(nota)
-            time.sleep(0.2)
+            time.sleep(0.1)
         except:
-            print('fail: ',x)
+            fails.append(x)
 
     data=[]
     for l,k in enumerate(notas):
