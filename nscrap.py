@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 import urllib
 import json
 import time
+import unicodedata
 
 class clarin():
     def __init__(self):
@@ -169,5 +170,36 @@ class cronista():
             
         self.urls=urls
         
+class dshow():
+def __init__(self):
+    self.url='https://www.diarioshow.com/'
+
+def get(self,url):        
+    nota=r.get(url)
+    sopa=bs(nota.content,features="lxml")
+    self.volanta=None
+    self.titulo=sopa.find('h1').text
+    self.bajada=unicodedata.normalize("NFKD",sopa.find('div',{'class' : 'title'}).get_text(strip=True))
+    bolds=[unicodedata.normalize("NFKD",x.get_text(strip=True)) for x in sopa.find('div', { 'class' :"entry-body text-font"}).findAll('strong')]           
+    self.bold=' / '.join(bolds)
+    self.bolds=bolds   
+    bulk=sopa.find('div', { 'class' :"entry-body text-font"}).find_all('p')
+    self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text()) for x in bulk])
+    self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])       
         
-        
+
+class ibae():
+    def __init__(self):
+        self.url='https://www.infobae.com/'
+   
+    def get(self,url):        
+        nota=r.get(url)
+        sopa=bs(nota.content,features="lxml")
+        self.titulo=sopa.find('h1').get_text(strip=True)
+        self.bajada=sopa.find('h2').get_text(strip=True)
+        mask=[ True  if x.find('mark',{'class':'hl_orange'}) else False for x in sopa.find('article').find_all('p')]
+        ind=[i for i, x in enumerate(mask) if x == True][-1]
+        self.cuerpo=' '.join([x.get_text() for x in sopa.find('article').find_all('p')[:ind]])
+        self.bolds=[x.get_text(strip=True) for x in sopa.find('article').find_all('b')[:ind]][:-1]    
+        self.bold=' / '.join(self.bolds)        
+        self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])        
