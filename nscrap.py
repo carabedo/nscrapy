@@ -203,3 +203,23 @@ class ibae():
         self.bolds=[x.get_text(strip=True) for x in sopa.find('article').find_all('b')[:ind]][:-1]    
         self.bold=' / '.join(self.bolds)        
         self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])        
+
+class ext():
+    def __init__(self):
+        self.url='https://exitoina.perfil.com/'
+   
+    def get(self,url):        
+        nota=r.get(url)
+        sopa=bs(nota.content,features="lxml")
+        body=sopa.find('div',{'id':'news-body'})
+        self.cuerpo=' '.join([unicodedata.normalize("NFKD",x.get_text()).strip() for x in body.find_all('p')])
+        self.titulo=sopa.find('h1').text
+        self.bajada=sopa.find('p','headline').text.strip()
+        ps=body.find_all('p')
+        bolds=[]
+        for p in ps:
+            bolds.extend([unicodedata.normalize("NFKD",x.get_text()).strip() for x in p.find_all('strong',recursive=False)])
+        self.bolds=bolds
+        self.quotes=[self.cuerpo.split('"')[1::2]]
+        self.quot=' / '.join(self.cuerpo.split('"')[1::2])
+        self.bold=' / '.join(bolds)
