@@ -23,7 +23,7 @@
 </p>
 </div>
 
-Libreria para bajar notas de clarin , pagina12, cronica y cronista.
+Libreria para bajar notas de clarin , pagina12, la nacion, infobae, cronica y cronista.
 
 Instalacion:
 
@@ -38,6 +38,8 @@ clarin()
 p12()
 cronica()
 cronista()
+lnn()
+ifb()
 ``` 
 
 Ejemplo de uso, scrapear notas de hoy (para pagina 12 cambiar clarin por p12) con comentarios:
