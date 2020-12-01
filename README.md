@@ -39,7 +39,7 @@ p12()
 cronica()
 cronista()
 lnn()
-ifb()
+ibae()
 ``` 
 
 Ejemplo de uso, scrapear notas de hoy (para pagina 12 cambiar clarin por p12) con comentarios:
