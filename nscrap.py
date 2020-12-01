@@ -121,6 +121,20 @@ class p12():
         self.comm=[x['body'] for x in self.coms]
         self.com=' '.join(self.comm)
         
+class lnn():
+    def __init__(self):
+        self.url='https://www.lanacion.com.ar'
+   
+    def get(self,url):        
+        nota=r.get(url)
+        sopa=bs(nota.content,features="lxml")
+        self.titulo=sopa.find('h1').get_text(strip=True)
+        self.bajada=sopa.find('epigrafe').get_text(strip=True)
+        self.cuerpo=' '.join([unicodedata.normalize("NFKD",x.get_text()).strip() for x in sopa.find('section',{'id':'cuerpo'}).find_all('p')][:-1])
+        bolds=sum([x.find_all('b') for x in sopa.find('section',{'id':'cuerpo'}).find_all('p', recursive=False)],[])
+        self.bolds=[x.get_text(strip=True) for x in bolds]
+        self.bold=' / '.join(self.bolds)     
+        self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])
         
 class cronica():
     def __init__(self,url):
