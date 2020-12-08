@@ -42,29 +42,25 @@ lnn()
 ibae()
 ``` 
 
-Ejemplo de uso, scrapear notas de hoy (para pagina 12 cambiar clarin por p12) con comentarios:
+Ejemplo de uso, scrapear notas de hoy (cambiar  p12 lnn o clarin) con comentarios:
 
 ```python
 from nscrapy import nscrap as ns
 from nscrapy.clarin import get
 
-notasclarin=ns.clarin()
+portal_clarin=ns.clarin()
 
 #scrapeo el portal
-notasclarin.hoy()
+portal_clarin.hoy()
 
 #las urls a las notas de hoy estan en .urls
 
-notashoy=get(notasclarin.urls)
+hoy_clarin=get(portal_clarin.urls)
 
 ```
-notashoy es una lista de objetos nota:
+hoy_clarin es una lista de objetos nota:
 
 `nota.titulo`  titulo de la nota
-
-`nota.comm`  comentarios
-
-`nota.com`  ' '.join(comentarios)
 
 `nota.volanta`  volanta de la nota
 
@@ -74,6 +70,8 @@ notashoy es una lista de objetos nota:
 
 `nota.bolds`  textos en negrita
 
-`nota.bold`  ' '.join(bolds)
+`nota.coms`  comentarios
+
+
 
 
