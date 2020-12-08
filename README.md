@@ -32,15 +32,20 @@ pip install nscrapy
 ``` 
 
 
+Clases disponibles con comentarios:
 
 ```python
 clarin()
 p12()
+lnn()
+``` 
+
+Clases disponibles sin comentarios:
+
+```python
 cronica()
 cronista()
-lnn()
 ibae()
-``` 
 
 Ejemplo de uso, scrapear notas de hoy (cambiar  p12 lnn o clarin) con comentarios:
 
