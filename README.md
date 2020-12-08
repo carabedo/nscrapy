@@ -46,6 +46,7 @@ Clases disponibles sin comentarios:
 cronica()
 cronista()
 ibae()
+``` 
 
 Ejemplo de uso, scrapear notas de hoy (cambiar  p12 lnn o clarin) con comentarios:
 
