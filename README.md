@@ -25,7 +25,7 @@
 
 Libreria para bajar notas de clarin , pagina12, la nacion, infobae, cronica y cronista.
 
-Instalacion:
+### Instalacion:
 
 ```python
 pip install nscrapy
@@ -48,7 +48,7 @@ cronista()
 ibae()
 ``` 
 
-Uso basico:
+### Ejemplo 1: Uso basico.
 
 ```python
 from nscrapy import nscrap as ns
@@ -78,7 +78,7 @@ nota_clarin es un objeto **nota**, con los siguientes atributos:
 
 
 
-Ejemplo de uso, scrapear notas de hoy (cambiar  p12/lnn/clarin) con comentarios:
+#### Ejemplo 2: Scrapear notas de hoy (cambiar  p12/lnn/clarin) con comentarios.
 
 ```python
 from nscrapy import nscrap as ns
