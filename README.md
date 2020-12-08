@@ -48,7 +48,7 @@ cronista()
 ibae()
 ``` 
 
-Ejemplo de uso, scrapear notas de hoy (cambiar  p12 lnn o clarin) con comentarios:
+Ejemplo de uso, scrapear notas de hoy (cambiar  p12/lnn/clarin) con comentarios:
 
 ```python
 from nscrapy import nscrap as ns
@@ -59,7 +59,7 @@ portal_clarin=ns.clarin()
 #scrapeo el portal
 portal_clarin.hoy()
 
-#las urls a las notas de hoy estan en .urls
+#las urls a las notas de hoy estan en .urls, **usar el get que corresponda!** del submodulo p12/lnn/clarin
 
 hoy_clarin=get(portal_clarin.urls)
 
