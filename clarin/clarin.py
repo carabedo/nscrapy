@@ -3,17 +3,26 @@ from bs4 import BeautifulSoup as bs
 import urllib
 import json
 import time
+import unicodedata
+from math import ceil
+
+def dict_extract(key, var):
+    ''' saca value de la key recurrentemente'''
+    if hasattr(var,'items'):
+        for k, v in var.items():
+            if k == key:
+                yield v
+            if isinstance(v, dict):
+                for result in dict_extract(key, v):
+                    yield unicodedata.normalize('NFKC',bs(result).text).strip()
+            elif isinstance(v, list):
+                for d in v:
+                    for result in dict_extract(key, d):
+                        yield unicodedata.normalize('NFKC',bs(result).text).strip()
 
 class clarin():
     def __init__(self):
         self.url='https://www.clarin.com'
-    
-    
-    urlc='https://login.clarin.com/comments.getComments'
-    urlcp='https://login.clarin.com/comments.getComments?categoryID=Com_03&streamID=H1Y2WMTS-&includeSettings=true&threaded=true&includeStreamInfo=true&includeUserOptions=true&includeUserHighlighting=true&lang=es&ctag=comments_v2&APIKey=2_fq_ZOJSR4xNZtv2rA8DALl1Gxp7yTYMb3UdER6zerupB55mwkzh9pVBz4Blzi8SW&source=showCommentsUI&sourceData=%7B%22categoryID%22%3A%22Com_03%22%2C%22streamID%22%3A%22H1Y2WMTS-%22%7D&sdk=js_latest&authMode=cookie&pageURL=https%3A%2F%2Fwww.clarin.com%2Fpolitica%2Facuerdo-cambiemos-massismo-echar-vido-camara-diputados_0_H1Y2WMTS-.html&format=jsonp&callback=gigya.callback&context=R4169081209'
-    urlp=urllib.parse.urlparse(urlcp)
-    keys=urllib.parse.parse_qs(urlp.query)
- 
     
     def get(self,url):
 
@@ -35,13 +44,58 @@ class clarin():
         self.cuerpo=' '.join(texto)
         self.bold=' '.join(bolds)
         self.bolds=bolds
-        keys=self.keys
-        keys['pageURL'][0]=url
-        keys['streamID'][0]=url[-14:-5]
-        cm=r.get(self.urlc,params=keys)
-        d = json.loads(cm.text[15:-2])
-        self.comm=[x['commentText'] for x in d['comments']]
-        self.com=' '.join(self.comm)
+        self.get_comments()    
+
+
+    def get_comments(self):
+        url=self.url
+        url0='https://login.clarin.com/comments.getStreamInfo'
+        keys_0={'categoryID': ['Com_03'],
+         'APIKey': ['2_fq_ZOJSR4xNZtv2rA8DALl1Gxp7yTYMb3UdER6zerupB55mwkzh9pVBz4Blzi8SW'],
+         'sdk': ['js_latest'],
+         'authMode': ['cookie'],
+         'format': ['jsonp'],
+         'callback': ['gigya.callback']}
+
+        keys_0['streamID']=url[-14:-5]
+        cm0=r.get(url0,params=keys_0)
+        info = json.loads(cm0.text[15:-2])
+        N=info['streamInfo']['threadCount']
+
+        keys = {'categoryID': ['Com_03'],
+         'includeSettings': ['true'],
+         'threaded': ['true'],
+         'includeStreamInfo': ['true'],
+         'includeUserOptions': ['true'],
+         'includeUserHighlighting': ['true'],
+         'lang': ['es'],
+         'ctag': ['comments_v2'],
+         'APIKey': ['2_fq_ZOJSR4xNZtv2rA8DALl1Gxp7yTYMb3UdER6zerupB55mwkzh9pVBz4Blzi8SW'],
+         'source': ['showCommentsUI'],
+         'sdk': ['js_latest'],
+         'authMode': ['cookie'],
+         'format': ['jsonp'],
+         'callback': ['gigya.callback']}
+
+        keys['streamID']=url[-14:-5]
+        coms=[]
+        urlcm='https://login.clarin.com/comments.getComments'
+        for x in range(ceil(N/10)):    
+            req = json.loads(r.get(urlcm,params=keys).text[15:-2])
+
+            #hay replies dentro de replies, busco recursivamente comentarios
+            coms.extend(list(dict_extract('commentText', req)))
+
+            #coms.extend([unicodedata.normalize('NFKC',bs(x['commentText']).text) for x in req['comments']])
+            #for k in req['comments']:
+            #    try: 
+            #        coms.extend([unicodedata.normalize('NFKC',bs(rep['commentText']).text) for rep in k['replies']])
+            #    except:
+            #        pass
+
+            req['comments'][-1]['timestamp']
+            keys['start']='ts_'+str(req['comments'][-1]['timestamp'])
+        self.coms=coms
       
     def hoy(self):            
         notas=r.get(self.url)
