@@ -48,7 +48,7 @@ cronista()
 ibae()
 ``` 
 
-### Ejemplo 1: Uso basico.
+#### Ejemplo 1: Uso basico.
 
 ```python
 from nscrapy import nscrap as ns
