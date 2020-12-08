@@ -48,6 +48,36 @@ cronista()
 ibae()
 ``` 
 
+Uso basico:
+
+```python
+from nscrapy import nscrap as ns
+
+
+nota_clarin=ns.clarin()
+
+# url de la nota
+
+nota_clarin.get('#####')
+
+```
+
+nota_clarin es un objeto **nota**, con los siguientes atributos:
+
+`.titulo`  titulo de la nota
+
+`.volanta`  volanta de la nota
+
+`.bajada`  resumen o subtitulo
+
+`.cuerpo`  cuerpo nota
+
+`.bolds`  textos en negrita
+
+`.coms`  comentarios
+
+
+
 Ejemplo de uso, scrapear notas de hoy (cambiar  p12/lnn/clarin) con comentarios:
 
 ```python
