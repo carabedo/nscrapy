@@ -143,8 +143,11 @@ class clarin():
 
         box7=json.loads(reqs[7].content.decode().strip('()'))['data']
         sopa7=bs(box7,features="lxml")
-        for x in sopa7.find('div',{'class':'mas-vistas'}).find_all('div')[1].find_all('div',{'onclick' : True}):
-            urls.append(x.get('onclick')[13:-11])  
+        try:
+            for x in sopa7.find('div',{'class':'mas-vistas'}).find_all('div')[1].find_all('div',{'onclick' : True}):
+                urls.append(x.get('onclick')[13:-11])  
+        except:
+            pass    
         urls2=list()    
         for u in urls:
             if u[:4] == 'http':
@@ -155,8 +158,8 @@ class clarin():
         
 class p12():
     
-    def __init__(self,url):
-        self.url=url
+    def __init__(self):
+        self.url='https://www.pagina12.com.ar'
   
     
     def get(self):
@@ -190,7 +193,11 @@ class p12():
         for x in pp.json()['data']['asset']['comments']['nodes']:
             coms.extend(list(dic_p12('body',x)))        
         self.coms=coms
-
+    def hoy(self):            
+        notas=r.get(self.url)
+        sopa=bs(notas.content,features="lxml")
+        urls=[x.find('a').get('href') for x in sopa.find_all('article')]
+        self.urls=urls
         
 class lnn():
     def __init__(self):
@@ -219,17 +226,17 @@ class lnn():
         coms=[]    
         for j,x in enumerate(comms):
             try:
-                coms.append(bs(x['content']['bodyHtml']).get_text().strip())
+                coms.append(bs(x['content']['bodyHtml'],features="lxml").get_text().strip())
             except:
                 pass    
         self.coms=coms
 
-     def hoy(self):
+    def hoy(self):
         hoy=r.get('https://www.lanacion.com.ar')
         urls=[]
-        h1s=bs(hoy.content).find_all('h1')
+        h1s=bs(hoy.content,features="lxml").find_all('h1')
         urls.extend([h1.find('a').get('href') for h1 in h1s])
-        h2s=bs(hoy.content).find_all('h2')
+        h2s=bs(hoy.content,features="lxml").find_all('h2')
         urls.extend([h2.find('a').get('href') for h2 in h2s])
         headers = {
         'authority': 'www.lanacion.com.ar',
@@ -255,9 +262,9 @@ class lnn():
         data=r1.json()['Modules']
         urls2=[]
         for tema in data:
-            urls2.extend([x.find('a').get('href') for x in bs(tema['Value']).find_all('h2')])
+            urls2.extend([x.find('a').get('href') for x in bs(tema['Value'],features="lxml").find_all('h2')])
             try:
-                urls2.extend([x.get('href') for x in bs(tema['Value']).find('ul').find_all('a')])
+                urls2.extend([x.get('href') for x in bs(tema['Value'],features="lxml").find('ul').find_all('a')])
             except:
                 pass
         urls.extend(urls2)
@@ -313,21 +320,22 @@ class cronista():
         self.urls=urls
         
 class dshow():
-def __init__(self):
-    self.url='https://www.diarioshow.com/'
 
-def get(self,url):        
-    nota=r.get(url)
-    sopa=bs(nota.content,features="lxml")
-    self.volanta=None
-    self.titulo=sopa.find('h1').text
-    self.bajada=unicodedata.normalize("NFKD",sopa.find('div',{'class' : 'title'}).get_text(strip=True))
-    bolds=[unicodedata.normalize("NFKD",x.get_text(strip=True)) for x in sopa.find('div', { 'class' :"entry-body text-font"}).findAll('strong')]           
-    self.bold=' / '.join(bolds)
-    self.bolds=bolds   
-    bulk=sopa.find('div', { 'class' :"entry-body text-font"}).find_all('p')
-    self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text()) for x in bulk])
-    self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])       
+    def __init__(self):
+        self.url='https://www.diarioshow.com/'
+
+    def get(self,url):        
+        nota=r.get(url)
+        sopa=bs(nota.content,features="lxml")
+        self.volanta=None
+        self.titulo=sopa.find('h1').text
+        self.bajada=unicodedata.normalize("NFKD",sopa.find('div',{'class' : 'title'}).get_text(strip=True))
+        bolds=[unicodedata.normalize("NFKD",x.get_text(strip=True)) for x in sopa.find('div', { 'class' :"entry-body text-font"}).findAll('strong')]           
+        self.bold=' / '.join(bolds)
+        self.bolds=bolds   
+        bulk=sopa.find('div', { 'class' :"entry-body text-font"}).find_all('p')
+        self.cuerpo=''.join([unicodedata.normalize("NFKD",x.get_text()) for x in bulk])
+        self.quotes=' / '.join([x.split('”')[0] for x in self.cuerpo.split('“')[1:]])       
         
 
 class ibae():

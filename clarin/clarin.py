@@ -128,8 +128,11 @@ class clarin():
 
         box7=json.loads(reqs[7].content.decode().strip('()'))['data']
         sopa7=bs(box7)
-        for x in sopa7.find('div',{'class':'mas-vistas'}).find_all('div')[1].find_all('div',{'onclick' : True}):
-            urls.append(x.get('onclick')[13:-11])  
+        try:
+            for x in sopa7.find('div',{'class':'mas-vistas'}).find_all('div')[1].find_all('div',{'onclick' : True}):
+                urls.append(x.get('onclick')[13:-11])  
+        except:
+            pass
         urls2=list()    
         for u in urls:
             if u[:4] == 'http':
